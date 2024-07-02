@@ -1,0 +1,14 @@
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\bin\Debug\net8.0\Trabalho Final ATP henrique.mendes.exe
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\bin\Debug\net8.0\Trabalho Final ATP henrique.mendes.deps.json
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\bin\Debug\net8.0\Trabalho Final ATP henrique.mendes.runtimeconfig.json
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\bin\Debug\net8.0\Trabalho Final ATP henrique.mendes.dll
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\bin\Debug\net8.0\Trabalho Final ATP henrique.mendes.pdb
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.AssemblyInfoInputs.cache
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.AssemblyInfo.cs
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.csproj.CoreCompileInputs.cache
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.dll
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\refint\Trabalho Final ATP henrique.mendes.dll
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.pdb
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.genruntimeconfig.cache
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\ref\Trabalho Final ATP henrique.mendes.dll
