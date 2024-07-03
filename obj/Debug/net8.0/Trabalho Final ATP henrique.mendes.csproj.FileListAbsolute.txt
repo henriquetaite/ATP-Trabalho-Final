@@ -12,3 +12,4 @@ C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\
 C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.pdb
 C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.genruntimeconfig.cache
 C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\ref\Trabalho Final ATP henrique.mendes.dll
+C:\Users\USUÁRIO\Documents\Trabalho Final ATP henrique.mendes\obj\Debug\net8.0\Trabalho Final ATP henrique.mendes.sourcelink.json
