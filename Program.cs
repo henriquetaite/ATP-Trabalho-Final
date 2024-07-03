@@ -135,7 +135,29 @@ class Program
         vendas[produto - 1, dia - 1] += quantidade;
         estoque[produto - 1] -= quantidade;
 
+        // Atualizar arquivo de produtos com novo estoque
+        AtualizarArquivoProdutos();
+
         Console.WriteLine("Venda registrada com sucesso.");
+    }
+
+    static void AtualizarArquivoProdutos()
+    {
+        try
+        {
+            using (StreamWriter writer = new StreamWriter("produtos.txt"))
+            {
+                for (int i = 0; i < produtos.Length; i++)
+                {
+                    writer.WriteLine($"{produtos[i]} {estoque[i]}");
+                }
+            }
+            Console.WriteLine("Estoque atualizado no arquivo 'produtos.txt'.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao atualizar o arquivo de produtos: {ex.Message}");
+        }
     }
 
     static void RelatorioVendas()
