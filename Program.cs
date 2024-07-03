@@ -1,24 +1,18 @@
 ﻿using System;
 using System.IO;
 
-//TRABALHO FINAL ATP - GERENCIANDO CONTROLE DE VENDAS DE 04 PRODUTOS
-
-//Criando class Program para armazenar todo o programa
 class Program
 {
-    private static string[] produtos = new string [4]; // Declarando vetor que armazena o nome dos produtos
-    private static int[] estoque = new int [4]; // Declarando vetor que armazena o estoque de cada produto
-    private static int[,] vendas = new int [4,31]; // Declarando matriz para armazenar a quantidade de vendas diárias de cada produto
+    private static string[] produtos = new string[4];
+    private static int[] estoque = new int[4];
+    private static int[,] vendas = new int[4, 31];
 
-//Definindo valor constante para a quantidade de dias em 1 mês
     private const int DiasNoMes = 31;
 
-//Criando método Main como ponto de entrada para o menu principal
     static void Main()
     {
         int opcao;
 
-// Criando método do-while para gerar as opções do usuário antes do 6 "sair" ser escolhido
         do
         {
             Console.WriteLine("Menu Principal:");
@@ -29,13 +23,12 @@ class Program
             Console.WriteLine("5 - Criar arquivo de vendas");
             Console.WriteLine("6 - Sair");
 
-// Criando comando if condicional para validar a opção do usuário
             if (!int.TryParse(Console.ReadLine(), out opcao))
             {
                 Console.WriteLine("Opção inválida, tente novamente!");
                 continue;
             }
-// Criando comando switch case para gerar a opção correspondente à escolha do usuário
+
             switch (opcao)
             {
                 case 1:
@@ -64,45 +57,43 @@ class Program
         } while (opcao != 6);
     }
 
-// Criando procedimento ImportarArquivoProdutos para fazer a importação do arquivo que vai servir de base para execução do programa
     static void ImportarArquivoProdutos()
     {
         try
         {
-// Criando comando para fazer a leitura do arquivo de produtos e suas quantidades em estoque
             string[] linhas = File.ReadAllLines("produtos.txt");
 
-// Declarando tamanho dos vetores, de acordo com a quantidade de produtos 
             produtos = new string[linhas.Length];
             estoque = new int[linhas.Length];
 
-// Preenchendo vetores, de acordo com a quantidade de produtos
             for (int i = 0; i < linhas.Length; i++)
             {
-                string[] dados = linhas[i].Split('\t');
-                produtos[i] = dados[0];
-                estoque[i] = int.Parse(dados[1]);
+                string[] dados = linhas[i].Split(' ');
+                if (dados.Length >= 2)
+                {
+                    produtos[i] = dados[0];
+                    estoque[i] = int.Parse(dados[1]);
+                }
+                else
+                {
+                    Console.WriteLine($"Erro ao ler dados da linha {i}: Formato inválido.");
+                }
             }
 
-// Declarando matriz de vendas com quantidade de produtos e 31 dias, e avisando usuário
             vendas = new int[produtos.Length, DiasNoMes];
 
             Console.WriteLine("Importação do Arquivo de produtos obteve êxito!");
         }
-
-// Alertando o usuário de possíveis problemas com o arquivo
-
         catch (FileNotFoundException)
         {
             Console.WriteLine("Arquivo de produtos não encontrado! Lembre-se de criar o arquivo 'produtos.txt' antes de importá-lo.");
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao importar arquivo de produtos! Verifique e tente novamente.");
+            Console.WriteLine($"Erro ao importar arquivo de produtos! Detalhes: {ex.Message}");
         }
     }
 
-// Criando procedimento para registrar as vendas informadas pelo usuário
     static void RegistrarVenda()
     {
         if (produtos == null || produtos.Length == 0)
@@ -111,9 +102,7 @@ class Program
             return;
         }
 
-        Console.WriteLine("Digite o código do produto (A, B, C ou D):");
-
-// Criando comando if condicional para garantir que o usuário informou um código de produto válido
+        Console.WriteLine("Digite o código do produto (1 a 4):");
 
         if (!int.TryParse(Console.ReadLine(), out int produto) || produto < 1 || produto > produtos.Length)
         {
@@ -123,8 +112,6 @@ class Program
 
         Console.WriteLine("Digite o dia do mês (1 a 31):");
 
-// Criando comando if condicional para garantir que o usuário informou um dia do mês válido
-
         if (!int.TryParse(Console.ReadLine(), out int dia) || dia < 1 || dia > DiasNoMes)
         {
             Console.WriteLine("Dia do mês inválido.");
@@ -133,15 +120,11 @@ class Program
 
         Console.WriteLine("Digite a quantidade vendida:");
 
-// Criando comando if condicional para garantir que o usuário informou uma quantidade de produto válida
-
         if (!int.TryParse(Console.ReadLine(), out int quantidade))
         {
             Console.WriteLine("Quantidade inválida!");
             return;
         }
-
-// Criando comando if condicional para garantir que o número de vendas não ultrapasse o número em estoque
 
         if (quantidade > estoque[produto - 1])
         {
@@ -149,18 +132,15 @@ class Program
             return;
         }
 
-// Criando cálculos para atualizar a quantidade em estoque
-
         vendas[produto - 1, dia - 1] += quantidade;
         estoque[produto - 1] -= quantidade;
 
         Console.WriteLine("Venda registrada com sucesso.");
     }
 
-// Criando procedimento RelatorioVendas para gerar e imprimir relatório de vendas
     static void RelatorioVendas()
     {
-        if (produtos == null || vendas == null)
+        if (produtos == null || produtos.Length == 0 || vendas == null)
         {
             Console.WriteLine("Importe o arquivo de produtos, registre as vendas e depois gere o relatório.");
             return;
@@ -168,16 +148,12 @@ class Program
 
         Console.WriteLine("Relatório de Vendas:");
 
-// Comandos para fazer um cabeçalho com o nome dos produtos
-
         Console.Write("\t");
         for (int i = 0; i < produtos.Length; i++)
         {
             Console.Write($"{produtos[i]}\t");
         }
         Console.WriteLine();
-
-// Comandos para gerar e imprimir a matriz
 
         for (int dia = 0; dia < DiasNoMes; dia++)
         {
@@ -190,32 +166,26 @@ class Program
         }
     }
 
-// Criando procedimento RelatorioEstoque para gerar e imprimir relatório de estoque
     static void RelatorioEstoque()
     {
-        if (produtos == null)
+        if (produtos == null || produtos.Length == 0)
         {
             Console.WriteLine("Importe o arquivo de produtos e depois solicite o relatório de estoque.");
             return;
         }
+
         Console.WriteLine("Relatório de Estoque:");
 
-// Comandos para fazer um cabeçalho com o nome dos produtos e estoques atualizados
-
-        Console.Write("Produto\tEstoque Atual\n");
-
-// Imprimindo números do vetor estoque
-        
+        Console.WriteLine("Produto\tEstoque Atual");
         for (int i = 0; i < produtos.Length; i++)
         {
             Console.WriteLine($"{produtos[i]}\t{estoque[i]}");
         }
     }
 
-// Criando procedimento para criar o arquivo de vendas
     static void CriarArquivoVendas()
     {
-        if (produtos == null || vendas == null)
+        if (produtos == null || produtos.Length == 0 || vendas == null)
         {
             Console.WriteLine("Importe o arquivo de produtos, registre as vendas e depois crie o arquivo de vendas.");
             return;
@@ -223,21 +193,13 @@ class Program
 
         try
         {
-
-// Criando o arquivo "total_vendas.txt"
-
             using (StreamWriter writer = new StreamWriter("total_vendas.txt"))
             {
-
-// Criando um cabeçalho no arquivo com o nome dos produtos
-
                 for (int i = 0; i < produtos.Length; i++)
                 {
                     writer.Write($"{produtos[i]}\t");
                 }
                 writer.WriteLine();
-
-//Completando o arquivo total_vendas com os dados de vendas
 
                 for (int dia = 0; dia < DiasNoMes; dia++)
                 {
@@ -251,9 +213,9 @@ class Program
             }
             Console.WriteLine("A criação do arquivo de total de vendas obteve êxito!");
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao criar o arquivo de vendas! Verifique e tente novamente.");
+            Console.WriteLine($"Erro ao criar o arquivo de vendas! Detalhes: {ex.Message}");
         }
     }
 }
